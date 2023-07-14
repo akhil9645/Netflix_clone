@@ -6,3 +6,6 @@ const Kwidth = SizedBox(
 const Kheight = SizedBox(
   height: 20,
 );
+const Separator = SizedBox(
+  height: 14,
+);
