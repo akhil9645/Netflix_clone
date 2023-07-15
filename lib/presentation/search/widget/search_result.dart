@@ -13,7 +13,7 @@ class SearchResultPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SearchTitle(title: 'Movies & TV'),
-        Kheight,
+        kheight,
         Expanded(
           child: GridView.count(
             crossAxisCount: 3,

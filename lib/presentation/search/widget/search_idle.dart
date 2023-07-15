@@ -14,16 +14,16 @@ class SearchIdle extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SearchTitle(
+        const SearchTitle(
           title: 'Top Searches',
         ),
-        Kheight,
+        kheight,
         Expanded(
           child: ListView.separated(
               physics: const BouncingScrollPhysics(),
               shrinkWrap: true,
               itemBuilder: (context, index) => const TopSearchItemTile(),
-              separatorBuilder: (context, index) => Separator,
+              separatorBuilder: (context, index) => separator,
               itemCount: 15),
         )
       ],
@@ -47,7 +47,7 @@ class TopSearchItemTile extends StatelessWidget {
               image: const DecorationImage(
                   image: AssetImage(imageUrl), fit: BoxFit.cover)),
         ),
-        Kwidth,
+        kwidth,
         const Expanded(
           child: Text(
             'Movie Name',

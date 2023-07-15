@@ -28,9 +28,9 @@ class ScreenDownloads extends StatelessWidget {
       body: ListView(
         //this is used for subtittle
         children: [
-          Kheight,
+          kheight,
           const _SmartDownloads(),
-          Kheight,
+          kheight,
           const SizedBox(
             height: 10,
           ),
@@ -41,7 +41,7 @@ class ScreenDownloads extends StatelessWidget {
             style: TextStyle(
                 color: whiteColor, fontSize: 24, fontWeight: FontWeight.bold),
           ),
-          Kheight,
+          kheight,
           const Text(
             "We'll download a personalised selection of \nmovies and shows for you, so there's \nalways something to watch on your \ndevice.",
             textAlign: TextAlign.center,
@@ -63,19 +63,19 @@ class ScreenDownloads extends StatelessWidget {
                 ),
                 DownloadsImageWidget(
                   imageList: imageList[0],
-                  margin: EdgeInsets.only(left: 160, bottom: 30),
+                  margin: const EdgeInsets.only(left: 160, bottom: 30),
                   angle: 20,
                   size: Size(size.width * 0.4, size.width * 0.55),
                 ),
                 DownloadsImageWidget(
                   imageList: imageList[1],
-                  margin: EdgeInsets.only(right: 160, bottom: 30),
+                  margin: const EdgeInsets.only(right: 160, bottom: 30),
                   angle: -20,
                   size: Size(size.width * 0.4, size.width * 0.55),
                 ),
                 DownloadsImageWidget(
                   imageList: imageList[2],
-                  margin: EdgeInsets.only(left: 0, top: 16),
+                  margin: const EdgeInsets.only(left: 0, top: 16),
                   size: Size(size.width * 0.4, size.width * 0.62),
                 ),
               ],
@@ -137,9 +137,9 @@ class _SmartDownloads extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Row(
       children: [
-        Kwidth,
+        kwidth,
         Icon(Icons.settings, color: whiteColor),
-        Kwidth,
+        kwidth,
         Text(
           'Smart Downloads',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),

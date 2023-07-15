@@ -11,7 +11,7 @@ class AppbarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Kwidth,
+        kwidth,
         Text(
           title,
           style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
@@ -22,7 +22,7 @@ class AppbarWidget extends StatelessWidget {
           size: 30,
           color: whiteColor,
         ),
-        Kwidth,
+        kwidth,
         Container(
           width: 30,
           height: 30,
@@ -33,7 +33,7 @@ class AppbarWidget extends StatelessWidget {
                   image: NetworkImage(
                       "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"))),
         ),
-        Kwidth,
+        kwidth,
       ],
     );
   }

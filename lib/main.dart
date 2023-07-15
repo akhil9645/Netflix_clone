@@ -5,7 +5,7 @@ import 'package:netflix_clone/core/constants/colors/colors.dart';
 import 'package:netflix_clone/presentation/main_page/screen_main_page.dart';
 
 void main(List<String> args) {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

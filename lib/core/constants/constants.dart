@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-const Kwidth = SizedBox(
+const kwidth = SizedBox(
   width: 10,
 );
-const Kheight = SizedBox(
+const kheight = SizedBox(
   height: 20,
 );
-const Separator = SizedBox(
+const separator = SizedBox(
   height: 14,
 );

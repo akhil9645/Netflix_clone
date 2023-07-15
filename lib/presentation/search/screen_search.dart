@@ -27,9 +27,9 @@ class ScreenSearch extends StatelessWidget {
                 style: const TextStyle(color: Colors.white),
                 backgroundColor: Colors.grey.withOpacity(0.4),
               ),
-              Kheight,
+              kheight,
               // Expanded(child: SearchIdle())
-              Expanded(child: SearchResultPage())
+              const Expanded(child: SearchResultPage())
             ],
           ),
         ),
