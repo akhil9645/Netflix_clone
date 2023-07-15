@@ -22,7 +22,7 @@ class VideoListTile extends StatelessWidget {
             children: [
               //left side icon
               CircleAvatar(
-                radius: 30,
+                radius: 25,
                 child: IconButton(
                   onPressed: () {},
                   icon: Icon(Icons.volume_off_rounded),
@@ -36,7 +36,9 @@ class VideoListTile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     CircleAvatar(
-                      radius: 30,
+                      backgroundImage:
+                          AssetImage("assets/images/movies_postures1.jpg"),
+                      radius: 25,
                     ),
                     separator,
                     VideoActionsWidget(
