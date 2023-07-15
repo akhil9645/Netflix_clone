@@ -22,10 +22,14 @@ class VideoListTile extends StatelessWidget {
             children: [
               //left side icon
               CircleAvatar(
+                backgroundColor: Colors.black87,
                 radius: 25,
                 child: IconButton(
                   onPressed: () {},
-                  icon: Icon(Icons.volume_off_rounded),
+                  icon: const Icon(
+                    Icons.volume_off_rounded,
+                    color: Colors.white70,
+                  ),
                 ),
               ),
 
@@ -79,7 +83,7 @@ class VideoActionsWidget extends StatelessWidget {
         ),
         Text(
           title,
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.bold),
         )
       ],
     );

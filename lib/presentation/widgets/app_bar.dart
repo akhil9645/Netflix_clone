@@ -29,9 +29,7 @@ class AppbarWidget extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(3),
               image: const DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                      "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"))),
+                  fit: BoxFit.cover, image: NetworkImage(userimg))),
         ),
         kwidth,
       ],
