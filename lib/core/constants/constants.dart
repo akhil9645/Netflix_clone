@@ -21,3 +21,7 @@ const height50 = SizedBox(
 
 const userimg =
     "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png";
+
+//images
+
+const homePageMain = "assets/images/1eDA2R5OMbm4yhpb1KXG6AhH7JX.jpg";
