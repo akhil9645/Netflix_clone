@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/constants/constants.dart';
-import 'package:netflix_clone/presentation/widgets/main_card.dart';
+import 'package:netflix_clone/presentation/home/widgets/numbercard.dart';
+
 import 'package:netflix_clone/presentation/widgets/main_card_2.dart';
 import 'package:netflix_clone/presentation/widgets/main_tittle.dart';
 
@@ -28,7 +29,7 @@ class ScreenHome extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 separator,
-                Maintitle(title: "Top 10 TV Shows in India Today"),
+                const Maintitle(title: "Top 10 TV Shows in India Today"),
                 homeCardSeperator,
                 LimitedBox(
                   maxHeight: 200,
@@ -37,11 +38,10 @@ class ScreenHome extends StatelessWidget {
                       children: List.generate(
                           10,
                           (index) => Padding(
-                                padding: const EdgeInsets.only(right: 8.0),
-                                child: Maincard(
-                                  image: image,
-                                ),
-                              ))),
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: NumberCard(
+                                index: index + 1,
+                              )))),
                 )
               ],
             ),
