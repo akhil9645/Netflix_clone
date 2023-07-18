@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:netflix_clone/core/constants/colors/colors.dart';
-
 import 'package:netflix_clone/core/constants/constants.dart';
 import 'package:netflix_clone/presentation/home/widgets/background_card.dart';
-
 import 'package:netflix_clone/presentation/home/widgets/numbertitlecard.dart';
-
 import 'package:netflix_clone/presentation/widgets/main_card_2.dart';
 
 ValueNotifier<bool> scrollNotifier = ValueNotifier(true);
@@ -57,7 +54,7 @@ class ScreenHome extends StatelessWidget {
               ),
               scrollNotifier.value == true
                   ? AnimatedContainer(
-                      duration: Duration(milliseconds: 100),
+                      duration: const Duration(milliseconds: 100),
                       width: double.infinity,
                       height: 90,
                       color: Colors.black.withOpacity(0.5),
@@ -70,7 +67,7 @@ class ScreenHome extends StatelessWidget {
                                 width: 60,
                                 height: 55,
                               ),
-                              Spacer(),
+                              const Spacer(),
                               const Icon(
                                 Icons.cast,
                                 size: 30,
