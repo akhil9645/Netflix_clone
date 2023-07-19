@@ -5,23 +5,31 @@ class HomePagebuttons extends StatelessWidget {
   const HomePagebuttons({
     required this.icon,
     required this.text,
+    this.iconsize = 28,
+    this.textsize = 18,
+    this.textcolour = whiteColor,
     super.key,
   });
   final IconData icon;
   final String text;
-
+  final double iconsize;
+  final double textsize;
+  final Color textcolour;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Icon(
           icon,
-          size: 28,
+          size: iconsize,
           color: whiteColor,
         ),
         Text(
           text,
-          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontSize: textsize,
+              fontWeight: FontWeight.bold,
+              color: textcolour),
         )
       ],
     );
