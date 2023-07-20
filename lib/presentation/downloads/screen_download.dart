@@ -129,9 +129,7 @@ class ScreenDownloads extends StatelessWidget {
 }
 
 class _SmartDownloads extends StatelessWidget {
-  const _SmartDownloads({
-    super.key,
-  });
+  const _SmartDownloads();
 
   @override
   Widget build(BuildContext context) {
