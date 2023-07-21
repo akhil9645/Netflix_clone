@@ -1,22 +1,21 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:netflix_clone/core/constants/api_constants.dart';
 import 'package:netflix_clone/core/constants/colors/colors.dart';
 import 'package:netflix_clone/core/constants/constants.dart';
+
+import 'package:netflix_clone/domain/downloads/popular_for_downloads.dart';
+import 'package:netflix_clone/domain/popular/result.dart';
 import 'package:netflix_clone/presentation/widgets/app_bar.dart';
 
 class ScreenDownloads extends StatelessWidget {
   ScreenDownloads({super.key});
 
-  final List imageList = [
-    "assets/images/image_posture2.jpg",
-    "assets/images/image_posture3.jpg",
-    "assets/images/movies_postures1.jpg"
-  ];
+  final _widgetlist = [const _SmartDownloads(), Section2(), const Section3()];
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       //tittle
       appBar: const PreferredSize(
@@ -25,105 +24,142 @@ class ScreenDownloads extends StatelessWidget {
           title: "Downloads",
         ),
       ),
-      body: ListView(
-        //this is used for subtittle
-        children: [
-          kheight,
-          const _SmartDownloads(),
-          kheight,
-          const SizedBox(
-            height: 10,
-          ),
-          //two textfiles
-          const Text(
-            'Introducing Downloads for you',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                color: whiteColor, fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          kheight,
-          const Text(
-            "We'll download a personalised selection of \nmovies and shows for you, so there's \nalways something to watch on your \ndevice.",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-              color: greyColor,
-            ),
-          ),
+      body: ListView.separated(
+        padding: const EdgeInsets.all(15),
+        itemBuilder: (context, indx) {
+          return _widgetlist[indx];
+        },
+        separatorBuilder: (context, indx) {
+          return const SizedBox(
+            height: 50,
+          );
+        },
+        itemCount: _widgetlist.length,
+      ),
+    );
+  }
+}
 
-          SizedBox(
-            width: size.width,
-            height: size.width,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                CircleAvatar(
-                  radius: size.width * 0.38,
-                  backgroundColor: Colors.grey.withOpacity(0.5),
-                ),
-                DownloadsImageWidget(
-                  imageList: imageList[0],
-                  margin: const EdgeInsets.only(left: 160, bottom: 30),
-                  angle: 20,
-                  size: Size(size.width * 0.4, size.width * 0.55),
-                ),
-                DownloadsImageWidget(
-                  imageList: imageList[1],
-                  margin: const EdgeInsets.only(right: 160, bottom: 30),
-                  angle: -20,
-                  size: Size(size.width * 0.4, size.width * 0.55),
-                ),
-                DownloadsImageWidget(
-                  imageList: imageList[2],
-                  margin: const EdgeInsets.only(left: 0, top: 16),
-                  size: Size(size.width * 0.4, size.width * 0.62),
-                ),
-              ],
-            ),
-          ),
+class Section2 extends StatelessWidget {
+  Section2({super.key});
 
-          //two buttons for setup and see what you can download
-          SizedBox(
-            width: double.infinity,
-            child: MaterialButton(
-              color: buttonColorblue,
-              onPressed: () {},
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5)),
-              child: const Padding(
-                padding: EdgeInsets.symmetric(vertical: 10),
-                child: Text(
-                  'Set Up',
-                  style: TextStyle(
-                      color: whiteColor,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 5,
-          ),
+  final images = [];
 
-          MaterialButton(
-            color: buttonColorWhite,
+  @override
+  Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    return Column(
+      children: [
+        const Text(
+          'Introducing Downloads for you',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              color: whiteColor, fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+        kheight,
+        const Text(
+          "We'll download a personalised selection of \nmovies and shows for you, so there's \nalways something to watch on your \ndevice.",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 16,
+            color: greyColor,
+          ),
+        ),
+        SizedBox(
+          width: size.width,
+          height: size.width,
+          child: FutureBuilder<List<Result>>(
+            future: popularForDownloads(),
+            builder:
+                (BuildContext context, AsyncSnapshot<List<Result>> snapshot) {
+              return snapshot.hasData
+                  ? Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: size.width * 0.38,
+                          backgroundColor: Colors.grey.withOpacity(0.5),
+                        ),
+                        DownloadsImageWidget(
+                          imageList:
+                              "$imgBaseUrl${snapshot.data![1].posterPath}",
+                          margin: const EdgeInsets.only(left: 160, bottom: 30),
+                          angle: 20,
+                          size: Size(size.width * 0.4, size.width * 0.55),
+                        ),
+                        DownloadsImageWidget(
+                          imageList:
+                              "$imgBaseUrl${snapshot.data![2].posterPath}",
+                          margin: const EdgeInsets.only(right: 160, bottom: 30),
+                          angle: -20,
+                          size: Size(size.width * 0.4, size.width * 0.55),
+                        ),
+                        DownloadsImageWidget(
+                          imageList:
+                              "$imgBaseUrl${snapshot.data![3].posterPath}",
+                          margin: const EdgeInsets.only(left: 0, top: 16),
+                          size: Size(size.width * 0.4, size.width * 0.62),
+                        ),
+                      ],
+                    )
+                  : const Center(
+                      child: CircularProgressIndicator(
+                        color: redColor,
+                      ),
+                    );
+            },
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class Section3 extends StatelessWidget {
+  const Section3({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          width: double.infinity,
+          child: MaterialButton(
+            color: buttonColorblue,
             onPressed: () {},
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             child: const Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: Text(
-                'See What You Can Download',
+                'Set Up',
                 style: TextStyle(
-                    color: backgroundColors,
+                    color: whiteColor,
                     fontSize: 20,
                     fontWeight: FontWeight.bold),
               ),
             ),
-          )
-        ],
-      ),
+          ),
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        MaterialButton(
+          color: buttonColorWhite,
+          onPressed: () {},
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          child: const Padding(
+            padding: EdgeInsets.symmetric(vertical: 10),
+            child: Text(
+              'See What You Can Download',
+              style: TextStyle(
+                  color: backgroundColors,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+        )
+      ],
     );
   }
 }
@@ -173,7 +209,7 @@ class DownloadsImageWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage(
+            image: NetworkImage(
               imageList,
             ),
           ),

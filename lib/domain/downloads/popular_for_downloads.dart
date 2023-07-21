@@ -1,12 +1,12 @@
 import "dart:convert";
 import "package:http/http.dart" as http;
-import "package:netflix_clone/core/constants/api_constants.dart" as api_const;
-import "package:netflix_clone/domain/downloads/popular/popular.dart";
-import "package:netflix_clone/domain/downloads/popular/result.dart";
+// import "package:netflix_clone/core/constants/api_constants.dart" as api_const;
+import "package:netflix_clone/domain/popular/popular.dart";
+import "package:netflix_clone/domain/popular/result.dart";
 
 Future<List<Result>> popularForDownloads() async {
   var uri =
-      "${api_const.domain}tv/popular?api_key=${api_const.apikey}&language=en-US&page=1";
+      "https://api.themoviedb.org/3/tv/popular?api_key=aa66f8b5678ce95e243fc44619e1fd47";
   var url = Uri.parse(uri);
   var response = await http.get(url);
   if (response.statusCode == 200) {

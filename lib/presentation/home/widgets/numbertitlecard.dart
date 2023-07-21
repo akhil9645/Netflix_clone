@@ -21,12 +21,14 @@ class NumbertitleCard extends StatelessWidget {
           child: ListView(
               scrollDirection: Axis.horizontal,
               children: List.generate(
-                  10,
-                  (index) => Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: NumberCard(
-                        index: index + 1,
-                      )))),
+                10,
+                (index) => Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: NumberCard(
+                    index: index + 1,
+                  ),
+                ),
+              )),
         )
       ],
     );

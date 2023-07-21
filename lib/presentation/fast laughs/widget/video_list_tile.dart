@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:netflix_clone/core/constants/api_constants.dart';
 import 'package:netflix_clone/core/constants/colors/colors.dart';
 import 'package:netflix_clone/core/constants/constants.dart';
+import 'package:netflix_clone/domain/trending/trending_api.dart';
 
 class VideoListTile extends StatelessWidget {
   final int index;
@@ -9,8 +11,30 @@ class VideoListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
-      Container(
-        color: Colors.accents[index % Colors.accents.length],
+      FutureBuilder(
+        future: getTrendingImgs(),
+        builder: (context, snapshot) {
+          String? imgPath = snapshot.data?[index].posterPath;
+          return snapshot.hasData
+              ? Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage("$imgBaseUrl$imgPath"),
+                    ),
+                  ),
+                )
+              : const SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      color: redColor,
+                    ),
+                  ),
+                );
+        },
       ),
       Align(
         alignment: Alignment.bottomCenter,
@@ -34,26 +58,37 @@ class VideoListTile extends StatelessWidget {
               ),
 
               //right side icons
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    CircleAvatar(
-                      backgroundImage:
-                          AssetImage("assets/images/movies_postures1.jpg"),
-                      radius: 25,
-                    ),
+                    FutureBuilder(
+                        future: getTrendingImgs(),
+                        builder: (context, snapshot) {
+                          String? imgPath = snapshot.data?[index].backdropPath;
+                          return snapshot.hasData
+                              ? CircleAvatar(
+                                  backgroundImage:
+                                      NetworkImage("$imgBaseUrl$imgPath"),
+                                  radius: 25,
+                                )
+                              : const Center(
+                                  child: CircularProgressIndicator(
+                                    color: redColor,
+                                  ),
+                                );
+                        }),
                     separator,
-                    VideoActionsWidget(
+                    const VideoActionsWidget(
                         icon: Icons.emoji_emotions_rounded, title: "LOL"),
                     separator,
-                    VideoActionsWidget(icon: Icons.add, title: "My List"),
+                    const VideoActionsWidget(icon: Icons.add, title: "My List"),
                     separator,
-                    VideoActionsWidget(
+                    const VideoActionsWidget(
                         icon: Icons.send_rounded, title: "Share"),
                     separator,
-                    VideoActionsWidget(
+                    const VideoActionsWidget(
                         icon: Icons.play_arrow_rounded, title: "Play"),
                   ],
                 ),
