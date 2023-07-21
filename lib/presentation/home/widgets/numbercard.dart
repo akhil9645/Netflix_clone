@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:netflix_clone/core/constants/colors/colors.dart';
 import 'package:netflix_clone/core/constants/constants.dart';
-import 'package:netflix_clone/presentation/search/widget/search_result.dart';
 
 class NumberCard extends StatelessWidget {
-  const NumberCard({super.key, required this.index});
-
   final int index;
+  final String image;
+  const NumberCard({super.key, required this.index, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +24,8 @@ class NumberCard extends StatelessWidget {
               height: 250,
               decoration: BoxDecoration(
                   borderRadius: radius10,
-                  image: const DecorationImage(
-                      image: AssetImage(imageUrl), fit: BoxFit.cover)),
+                  image: DecorationImage(
+                      image: NetworkImage(image), fit: BoxFit.cover)),
             ),
           ],
         ),

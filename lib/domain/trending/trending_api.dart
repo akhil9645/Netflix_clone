@@ -4,20 +4,45 @@ import 'package:netflix_clone/domain/trending/trending_api_model/trending_model.
 import 'package:netflix_clone/core/constants/api_constants.dart' as api_const;
 import 'package:http/http.dart' as http;
 
+// Future<List<Result>> getTrendingImgs() async {
+//   var uri = "${api_const.domain}/trending/all/week?api_key=${api_const.apikey}";
+//   var url = Uri.parse(uri);
+//   var response = await http.get(url);
+//   if (response.statusCode == 200) {
+//     var trendingData = response.body;
+//     var jsonBody = jsonDecode(trendingData);
+//     var trendingResult = TrendingModel.fromJson(jsonBody);
+//     if (trendingResult.results != null) {
+//       return trendingResult.results!;
+//     }
+//   } else {
+//     print(response.statusCode);
+//   }
+//   List<Result> emty = [];
+//   return emty;
+// }
 Future<List<Result>> getTrendingImgs() async {
-  var uri = "${api_const.domain}/trending/all/week?api_key=${api_const.apikey}";
-  var url = Uri.parse(uri);
-  var response = await http.get(url);
-  if (response.statusCode == 200) {
-    var trendingData = response.body;
-    var jsonBody = jsonDecode(trendingData);
-    var trendingResult = TrendingModel.fromJson(jsonBody);
-    if (trendingResult.results != null) {
-      return trendingResult.results!;
+  try {
+    var uri =
+        "${api_const.domain}/trending/all/week?api_key=${api_const.apikey}";
+    var url = Uri.parse(uri);
+    var response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      var trendingData = response.body;
+      var jsonBody = jsonDecode(trendingData);
+      var trendingResult = TrendingModel.fromJson(jsonBody);
+
+      if (trendingResult.results != null) {
+        return trendingResult.results!;
+      }
+    } else {
+      print("Error: ${response.statusCode}");
     }
-  } else {
-    print(response.statusCode);
+  } catch (e) {
+    print("Error fetching data: $e");
   }
-  List<Result> emty = [];
-  return emty;
+
+  List<Result> empty = [];
+  return empty;
 }

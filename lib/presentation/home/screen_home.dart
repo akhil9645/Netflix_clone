@@ -34,22 +34,20 @@ class ScreenHome extends StatelessWidget {
           child: Stack(
             children: [
               ListView(
-                children: [
-                  const BackgroundImageCard(),
+                children: const [
+                  BackgroundImageCard(),
                   MainCardTittle(
-                    image: image,
                     title: 'Released in the past Year',
                   ),
                   separator,
-                  MainCardTittle(
-                    image: image,
+                  MainCardTittle2(
                     title: 'Trending Now',
                   ),
-                  const NumbertitleCard(),
+                  NumbertitleCard(),
                   separator,
-                  MainCardTittle(image: image, title: "Tense Dramas"),
+                  MainCardTittle3(title: "Tense Dramas"),
                   separator,
-                  MainCardTittle(image: image, title: "South Indian Cinema")
+                  MainCardTittle4(title: "South Indian Cinema")
                 ],
               ),
               scrollNotifier.value == true
