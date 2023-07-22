@@ -22,8 +22,10 @@ class NumbertitleCard extends StatelessWidget {
         LimitedBox(
           maxHeight: 200,
           child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: List.generate(10, (index) {
+            scrollDirection: Axis.horizontal,
+            children: List.generate(
+              10,
+              (index) {
                 return FutureBuilder(
                     future: getTopRatedImgs(),
                     builder: (context, snapshot) {
@@ -46,7 +48,9 @@ class NumbertitleCard extends StatelessWidget {
                               ),
                             );
                     });
-              })),
+              },
+            ),
+          ),
         )
       ],
     );

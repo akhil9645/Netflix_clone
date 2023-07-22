@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/constants/colors/colors.dart';
 import 'package:netflix_clone/core/constants/constants.dart';
 import 'package:netflix_clone/presentation/home/widgets/homepage_custombuttons.dart';
-import 'package:netflix_clone/presentation/new_and_hot/widgets/coming_soon_widget.dart';
+
+import 'package:netflix_clone/presentation/new_and_hot/widgets/video_widget.dart';
 
 class EveryoneWatching extends StatelessWidget {
-  const EveryoneWatching({
-    super.key,
-    required this.img,
-  });
+  const EveryoneWatching(
+      {super.key,
+      required this.img,
+      required this.content,
+      required this.title});
 
-  final String img;
+  final String? img;
+  final String? title;
+  final String? content;
 
   @override
   Widget build(BuildContext context) {
@@ -18,17 +22,19 @@ class EveryoneWatching extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         separator,
-        const Text(
-          'Friends',
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        Text(
+          title ?? "Movie name",
+          style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         separator,
-        const Text(
-          'This hit slitocm follows the merry misadventures of six 20-something pals as they navigate the pitfalls of \n work, life and love in 1990s Manhattan.',
-          style: TextStyle(fontSize: 17, color: greyColor),
+        Text(
+          content ??
+              'This hit slitocm follows the merry misadventures of six 20-something pals as they navigate the pitfalls of \n work, life and love in 1990s Manhattan.',
+          maxLines: 8,
+          style: const TextStyle(fontSize: 17, color: greyColor),
         ),
         height50,
-        NewAndHotImage(img: img),
+        VideoWidget(imgpath: img),
         separator,
         separator,
         const Row(

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:netflix_clone/core/constants/colors/colors.dart';
 import 'package:netflix_clone/core/constants/constants.dart';
+import 'package:netflix_clone/domain/downloads/popular_for_downloads.dart';
+import 'package:netflix_clone/domain/now_playing/now_playing_api.dart';
 import 'package:netflix_clone/presentation/new_and_hot/widgets/coming_soon_widget.dart';
 import 'package:netflix_clone/presentation/new_and_hot/widgets/everyonwatching_widget.dart';
 
@@ -71,23 +73,57 @@ class ScreenNewandHot extends StatelessWidget {
   }
 
   _buildComingSoon() {
-    const img = "assets/images/nf3Vlxm3C9U1aKUUQHmKFZmxPSc.jpg";
-
-    return ListView.builder(
-      itemCount: 10,
-      itemBuilder: (context, index) {
-        return const ComingSoonwidget(img: img);
+    return FutureBuilder(
+      future: getNowPlayingImgs(),
+      builder: (context, snapshot) {
+        return snapshot.hasData
+            ? ListView.builder(
+                itemCount: snapshot.data?.length,
+                itemBuilder: (context, indx) {
+                  String? date = snapshot.data?[indx].releaseDate;
+                  String? title = snapshot.data?[indx].title;
+                  String? content = snapshot.data?[indx].overview;
+                  String? imgPath = snapshot.data?[indx].backdropPath;
+                  return ComingSoonwidget(
+                    img: imgPath,
+                    content: content,
+                    date: date,
+                    title: title,
+                  );
+                },
+              )
+            : const Center(
+                child: CircularProgressIndicator(
+                  color: redColor,
+                ),
+              );
       },
     );
   }
 
   _buildEveryonesWatching() {
-    const img = "assets/images/foGkPxpw9h8zln81j63mix5B7m8.jpg";
-    return ListView.builder(
-      itemCount: 10,
-      itemBuilder: (context, index) {
-        return const EveryoneWatching(img: img);
-      },
-    );
+    return FutureBuilder(
+        future: popularForDownloads(),
+        builder: (context, snapshot) {
+          return snapshot.hasData
+              ? ListView.builder(
+                  itemCount: snapshot.data?.length,
+                  itemBuilder: (context, index) {
+                    String? title = snapshot.data?[index].title;
+                    String? content = snapshot.data?[index].overview;
+                    String? imgpath = snapshot.data?[index].backdropPath;
+                    return EveryoneWatching(
+                      img: imgpath,
+                      content: content,
+                      title: title,
+                    );
+                  },
+                )
+              : const Center(
+                  child: CircularProgressIndicator(
+                    color: redColor,
+                  ),
+                );
+        });
   }
 }

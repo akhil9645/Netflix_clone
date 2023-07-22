@@ -22,6 +22,7 @@ class VideoListTile extends StatelessWidget {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: NetworkImage("$imgBaseUrl$imgPath"),
+                      fit: BoxFit.cover,
                     ),
                   ),
                 )
