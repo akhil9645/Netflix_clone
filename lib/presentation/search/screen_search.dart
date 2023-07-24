@@ -55,7 +55,7 @@ class ScreenSearch extends StatelessWidget {
                       ),
                     ),
                     (searchController.text.isEmpty)
-                        ? const Expanded(child: SearchIdle())
+                        ? Expanded(child: SearchIdle())
                         : Expanded(
                             child: SearchResultPage(
                             searchText: searchText,
