@@ -12,7 +12,7 @@ class Result {
   int? id;
   @JsonKey(name: 'original_language')
   String? originalLanguage;
-  @JsonKey(name: 'original_title')
+  @JsonKey(name: 'original_name')
   String? originalTitle;
   String? overview;
   double? popularity;

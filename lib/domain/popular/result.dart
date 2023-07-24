@@ -12,14 +12,15 @@ class Result {
   int? id;
   @JsonKey(name: 'original_language')
   String? originalLanguage;
-  @JsonKey(name: 'original_title')
-  String? originalTitle;
+  @JsonKey(name: 'original_name')
+  String? originalName;
   String? overview;
   double? popularity;
   @JsonKey(name: 'poster_path')
   String? posterPath;
   @JsonKey(name: 'release_date')
   String? releaseDate;
+  @JsonKey(name: 'title')
   String? title;
   bool? video;
   @JsonKey(name: 'vote_average')
@@ -33,7 +34,7 @@ class Result {
     this.genreIds,
     this.id,
     this.originalLanguage,
-    this.originalTitle,
+    this.originalName,
     this.overview,
     this.popularity,
     this.posterPath,

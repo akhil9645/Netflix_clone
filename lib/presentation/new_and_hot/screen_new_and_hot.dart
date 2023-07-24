@@ -109,7 +109,7 @@ class ScreenNewandHot extends StatelessWidget {
               ? ListView.builder(
                   itemCount: snapshot.data?.length,
                   itemBuilder: (context, index) {
-                    String? title = snapshot.data?[index].title;
+                    String? title = snapshot.data?[index].originalName;
                     String? content = snapshot.data?[index].overview;
                     String? imgpath = snapshot.data?[index].backdropPath;
                     return EveryoneWatching(

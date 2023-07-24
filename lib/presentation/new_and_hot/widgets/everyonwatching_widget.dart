@@ -23,7 +23,7 @@ class EveryoneWatching extends StatelessWidget {
       children: [
         separator,
         Text(
-          title ?? "Movie name",
+          title ?? 'Movie Name',
           style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         separator,

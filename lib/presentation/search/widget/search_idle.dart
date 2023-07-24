@@ -26,7 +26,8 @@ class SearchIdle extends StatelessWidget {
                       itemBuilder: (context, indx) {
                         String imagepath =
                             '${snapshot.data![indx].backdropPath}';
-                        String titlepath = '${snapshot.data![indx].title}';
+                        String titlepath =
+                            '${snapshot.data![indx].originalTitle}';
                         return TopSearchItemTile(
                           imagePath: imagepath,
                           moviename: titlepath,
@@ -68,10 +69,10 @@ class TopSearchItemTile extends StatelessWidget {
                   image: NetworkImage(imagePath), fit: BoxFit.cover)),
         ),
         kwidth,
-        const Expanded(
+        Expanded(
           child: Text(
-            'Movie Name',
-            style: TextStyle(
+            moviename,
+            style: const TextStyle(
                 color: whiteColor, fontWeight: FontWeight.bold, fontSize: 16),
           ),
         ),
