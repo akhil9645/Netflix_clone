@@ -8,9 +8,14 @@ import 'package:netflix_clone/presentation/search/widget/search_result.dart';
 TextEditingController searchController = TextEditingController();
 ValueNotifier searchScreenNotifier = ValueNotifier([]);
 
-class ScreenSearch extends StatelessWidget {
-  ScreenSearch({super.key});
+class ScreenSearch extends StatefulWidget {
+  const ScreenSearch({super.key});
 
+  @override
+  State<ScreenSearch> createState() => _ScreenSearchState();
+}
+
+class _ScreenSearchState extends State<ScreenSearch> {
   String searchText = '';
 
   @override
@@ -55,7 +60,7 @@ class ScreenSearch extends StatelessWidget {
                       ),
                     ),
                     (searchController.text.isEmpty)
-                        ? Expanded(child: SearchIdle())
+                        ? const Expanded(child: SearchIdle())
                         : Expanded(
                             child: SearchResultPage(
                             searchText: searchText,

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:netflix_clone/core/constants/api_constants.dart';
 import 'package:netflix_clone/core/constants/colors/colors.dart';
 import 'package:netflix_clone/core/constants/constants.dart';
 import 'package:netflix_clone/domain/trending/trending_api.dart';
@@ -24,13 +25,13 @@ class SearchIdle extends StatelessWidget {
                       physics: const BouncingScrollPhysics(),
                       shrinkWrap: true,
                       itemBuilder: (context, indx) {
-                        String imagepath =
-                            '${snapshot.data![indx].backdropPath}';
-                        String titlepath =
-                            '${snapshot.data![indx].originalTitle}';
+                        String titlepath = '${snapshot.data![indx].title}';
                         return TopSearchItemTile(
-                          imagePath: imagepath,
-                          moviename: titlepath,
+                          imagePath:
+                              "$imgBaseUrl${snapshot.data![indx].backdropPath}",
+                          moviename: titlepath.isNotEmpty
+                              ? "${snapshot.data![indx].title}"
+                              : "Movie Name",
                         );
                       },
                       separatorBuilder: (context, index) => separator,
